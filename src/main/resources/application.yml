@@ -1,15 +1,26 @@
 spring:
-  application:
-    name: jdbc
-management:
-  context_path: /admin
+    application:
+        name: oauth2-server
+    mvc:
+        favicon:
+            enabled: false
+        throw-exception-if-no-handler-found: true
+    main:
+        banner-mode: 'off'
+#management:
+#    context_path: /admin
 security:
-  oauth2:
-    resource:
-      filter-order: 3
+    oauth2:
+        resource:
+            filter-order: 3
+        client:
+            authenticationScheme: header
 logging:
-  level:
+    level:
     # org.springframework.security: DEBUG
 
 server:
-  port: 8080
+    port: 8080
+    error:
+        whitelabel:
+            enabled: false
