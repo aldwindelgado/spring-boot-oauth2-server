@@ -40,7 +40,7 @@ server:
 oauth2:
     paths:
         token: /v1/oauth2/token
-        check_token: /v1/oauth2/token
+        check_token: /v1/oauth2/check_token
         token_key: /v1/oauth2/token_key
         authorize: /v1/oauth2/authorize
         confirm_access: /v1/oauth2/confirm_access
