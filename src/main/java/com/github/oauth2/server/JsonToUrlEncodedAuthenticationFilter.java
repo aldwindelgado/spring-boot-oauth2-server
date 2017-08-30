@@ -29,10 +29,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class JsonToUrlEncodedAuthenticationFilter extends OncePerRequestFilter {
 
     /**
-     * Dito pwede nating maalis yung grant type Basically they should be all
-     * client_credentials Append nalang dito yung grant types para hindi masama
-     * sa harapan
-     *
      * @param request
      * @param response
      * @param filterChain
@@ -48,7 +44,6 @@ public class JsonToUrlEncodedAuthenticationFilter extends OncePerRequestFilter {
             byte[] json = ByteStreams.toByteArray(request.getInputStream());
 
             Map<String, String> jsonMap = new ObjectMapper().readValue(json, Map.class);
-//            jsonMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach((x) -> LOGGER.info("Shit: ", x));
             Map<String, String[]> parameters
                     = jsonMap.entrySet().stream()
                     .collect(Collectors.toMap(
