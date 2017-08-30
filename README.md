@@ -24,4 +24,6 @@ curl -X POST -H "Authorization: Basic YWNjb3VudDpwYXNzd29yZA=="  -H "Content-Typ
 ```
 curl -X POST -H "Authorization: Basic YWNjb3VudDpwYXNzd29yZA=="  -H "Content-Type: application/json" -d '{ "grant_type": "client_credentials" }' -v localhost:8080/oauth/token
 ```
-See [https://github.com/aldwindelgado/spring-boot-oauth2-client] (https://github.com/aldwindelgado/spring-boot-oauth2-client) for running the oauth-client (resource server)
+
+## Resource Server
+See [spring-boot-oauth2-client](https://github.com/aldwindelgado/spring-boot-oauth2-client) for running the oauth-client (resource server)
