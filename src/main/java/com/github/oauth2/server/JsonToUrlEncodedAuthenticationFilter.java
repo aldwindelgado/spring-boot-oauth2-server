@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.web.savedrequest.Enumerator;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -28,11 +29,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class JsonToUrlEncodedAuthenticationFilter extends OncePerRequestFilter {
 
+    @Value("${oauth2.paths.token}")
+    private String tokenPath;
+
     /**
-     * Dito pwede nating maalis yung grant type Basically they should be all
-     * client_credentials Append nalang dito yung grant types para hindi masama
-     * sa harapan
-     *
      * @param request
      * @param response
      * @param filterChain
@@ -43,12 +43,11 @@ public class JsonToUrlEncodedAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        if (Objects.equals(request.getServletPath(), "/oauth/token") && Objects.equals(request.getContentType(), "application/json")) {
+        if (Objects.equals(request.getServletPath(), tokenPath) && Objects.equals(request.getContentType(), "application/json")) {
 
             byte[] json = ByteStreams.toByteArray(request.getInputStream());
 
             Map<String, String> jsonMap = new ObjectMapper().readValue(json, Map.class);
-//            jsonMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach((x) -> LOGGER.info("Shit: ", x));
             Map<String, String[]> parameters
                     = jsonMap.entrySet().stream()
                     .collect(Collectors.toMap(
