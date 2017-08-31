@@ -26,4 +26,4 @@ curl -X POST -H "Authorization: Basic c2FtcGxlY2xpZW50OnNhbXBsZXBhc3N3b3Jk"  -H 
 ```
 
 ## Resource Server (JDBC branch)
-See [spring-boot-oauth2-client](https://github.com/aldwindelgado/spring-boot-oauth2-client) for running the oauth-client (resource server)
+See [spring-boot-oauth2-client](https://github.com/aldwindelgado/spring-boot-oauth2-client/tree/jdbc) for running the oauth-client (resource server)
