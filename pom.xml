@@ -17,7 +17,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>1.8</java.version>        
+        <docker.image.prefix>aldwindelgado</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -102,6 +103,30 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker-files</dockerDirectory>
+                    <!--
+                        DOCKER_HOST will default connect to localhost:2375
+                        Refer to: https://github.com/spotify/docker-maven-plugin
+                        
+                        On WINDOWS: enable the docker-ce settings to allow 2375 to connect
+                        On LINUX: this will automatically detect the DOCKER_HOST so no need to do anything
+                    -->
+                    <!--<dockerHost>http://localhost:2375</dockerHost>-->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
