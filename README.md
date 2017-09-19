@@ -1,4 +1,4 @@
-Sample standalone OAuth2 authorization server for Spring Boot
+Sample standalone OAuth2 authorization server for Spring Boot (Uses in-memory token store)
 
 The requesting method for token supports both ```json format``` and ```url-encoded format```
 
