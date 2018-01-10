@@ -1,6 +1,7 @@
 -----------------------------------------------------------------
 -- Author: Aldwin Delgado
 -----------------------------------------------------------------
+-- https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -83,11 +84,26 @@ create table oauth_client_details (
 --   code VARCHAR(256), authentication BYTEA
 -- );
 
-INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, authorities, access_token_validity)
-    VALUES ('sampleclient', 'sample-resource', crypt('samplepassword', gen_salt('bf')), 'trust', 'client_credentials,password', 'ROLE_CLIENT', 60);
+--create table oauth_approvals (
+--	userId VARCHAR(256),
+--	clientId VARCHAR(256),
+--	scope VARCHAR(256),
+--	status VARCHAR(10),
+--	expiresAt TIMESTAMP,
+--	lastModifiedAt TIMESTAMP
+--);
 
 INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, authorities, access_token_validity)
-    VALUES ('anotherclient', 'another-resource', crypt('anotherpassword', gen_salt('bf')), 'trust', 'client_credentials,password', 'ROLE_CLIENT', 60);
+    VALUES ('admin', 'admin-resource', crypt('samplepassword', gen_salt('bf')), 'trust', 'client_credentials', 'ROLE_ADMIN', 28800);
+
+INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, authorities, access_token_validity)
+    VALUES ('sample', 'sample-resource', crypt('samplepassword', gen_salt('bf')), 'read,write', 'client_credentials', 'ROLE_CLIENT', 60);
+
+INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, authorities, access_token_validity)
+    VALUES ('another', 'sample-resource', crypt('anotherpassword', gen_salt('bf')), 'read,write', 'client_credentials', 'ROLE_CLIENT', 60);
+
+INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, authorities, access_token_validity)
+    VALUES ('bogus', 'bogus-resource', crypt('boguspassword', gen_salt('bf')), 'bogus', 'client_credentials', 'ROLE_CLIENT', 60);
 
 \echo -----------------------------------------------------------------
 \echo -- Manage Ownership

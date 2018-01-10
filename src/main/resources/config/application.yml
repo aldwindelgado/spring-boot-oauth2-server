@@ -44,3 +44,7 @@ oauth2:
         token_key: /v1/oauth2/token_key
         authorize: /v1/oauth2/authorize
         confirm_access: /v1/oauth2/confirm_access
+    keystore_file_uri: key/mykey.jks
+    keystore_password: $ampl3
+    keystore_alias: mykey
+    custom_token_field_name: custom_field
