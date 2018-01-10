@@ -7,6 +7,9 @@ The token validity is currently 60secs.
 
 
 Update any of the ```clienId```/```clientPassword```/```tokenValidity``` to however you want.
+## Other implementations
+* Using [JDBC](https://github.com/aldwindelgado/spring-boot-oauth2-server/tree/jdbc) with default token
+* Using [JDBC with JWT](https://github.com/aldwindelgado/spring-boot-oauth2-server/tree/jwt) as the token
 
 ## Running
 ```shell
